@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     public int lives = 3;
     public bool isGrounded = false;
-    public bool isMooving = false;
+    public bool isMoving = false;
     public bool isImmune = false;
 
     public float speed = 5f;
@@ -40,6 +40,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         movHor = Input.GetAxisRaw("Horizontal");
+
+        isMoving = (movHor != 0f);
+        isGrounded = Physics2D.CircleCast(transform.position, radius, Vector3.down, groundRayDist, groundLayer);
+
     }
 
     private void FixedUpdate()
